@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from types import TracebackType
 from typing import Any
 
 import httpx
@@ -40,7 +41,7 @@ class RickAndMortyClient:
         url = f"{self._base_url}/character/{character_id}"
         response = await self._client.get(url)
         response.raise_for_status()
-        json_data: dict[str, Any] = response.json()
+        json_data: dict[str, Any] = response.json()  # type: ignore[explicit-any]
         return Character.model_validate(json_data)
 
     async def close(self) -> None:
@@ -55,7 +56,7 @@ class RickAndMortyClient:
         self,
         exc_type: type[BaseException] | None,
         exc_val: BaseException | None,
-        exc_tb: Any,
+        exc_tb: TracebackType | None,
     ) -> None:
         """Async context manager exit."""
         await self.close()
