@@ -2,9 +2,7 @@
 
 from __future__ import annotations
 
-from typing import List
-
-from pydantic import BaseModel, HttpUrl, Field
+from pydantic import BaseModel, Field, HttpUrl
 
 
 class CharacterOrigin(BaseModel):
@@ -33,7 +31,7 @@ class Character(BaseModel):
     origin: CharacterOrigin
     location: CharacterLocation
     image: HttpUrl
-    episode: List[HttpUrl] = Field(default_factory=list)
+    episode: list[HttpUrl] = Field(default_factory=list)
     url: HttpUrl
     created: str  # ISO datetime string
 

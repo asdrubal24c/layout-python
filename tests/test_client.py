@@ -1,10 +1,10 @@
 """Tests for the Rick and Morty API client with mocked HTTP responses."""
 
-import pytest
 import httpx
+import pytest
 import respx
 
-from src.client import RickAndMortyClient, BASE_URL
+from src.client import BASE_URL, RickAndMortyClient
 from src.models import Character
 
 
